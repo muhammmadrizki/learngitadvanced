@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Basic arithmetic
+      function add(a, b) {
+        return Number(a) + Number(b);
+      }
+
+      function subtract(a, b) {
+        return Number(a) - Number(b);
+      }
+
+      function multiply(a, b) {
+        return Number(a) * Number(b);
+      }
+
+      function divide(a, b) {
+        if (Number(b) === 0) {
+          throw new Error("Cannot divide by zero");
+        }
+        return Number(a) / Number(b);
+      }
+
+      // Exponentiation
+      function power(base, exponent) {
+        return Math.pow(Number(base), Number(exponent));
+      }
+
+      // Factorial (n!) for non-negative integers
+      function factorial(n) {
+        const num = Number(n);
+        if (!Number.isInteger(num) || num < 0) {
+          throw new Error("factorial expects a non-negative integer");
+        }
+        if (num === 0 || num === 1) return 1;
+        let result = 1;
+        for (let i = 2; i <= num; i++) {
+          result *= i;
+        }
+        return result;
+      }
+
+      // Greatest common divisor (Euclidean algorithm)
+      function gcd(a, b) {
+        let x = Math.abs(Number(a));
+        let y = Math.abs(Number(b));
+        while (y !== 0) {
+          const temp = y;
+          y = x % y;
+          x = temp;
+        }
+        return x;
+      }
+
+      // Least common multiple
+      function lcm(a, b) {
+        const x = Number(a);
+        const y = Number(b);
+        if (x === 0 || y === 0) return 0;
+        return Math.abs(x * y) / gcd(x, y);
+      }
+
+      // Sum of an array of numbers
+      function sum(numbers) {
+        if (!Array.isArray(numbers)) throw new Error("sum expects an array");
+        return numbers.reduce((acc, n) => acc + Number(n), 0);
+      }
+
+      // Average (mean) of an array of numbers
+      function average(numbers) {
+        if (!Array.isArray(numbers) || numbers.length === 0) {
+          throw new Error("average expects a non-empty array");
+        }
+        return sum(numbers) / numbers.length;
+      }
+
+      // Prime check
+      function isPrime(n) {
+        const num = Number(n);
+        if (!Number.isInteger(num) || num < 2) return false;
+        if (num % 2 === 0) return num === 2;
+        const limit = Math.floor(Math.sqrt(num));
+        for (let i = 3; i <= limit; i += 2) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+
+      // Expose to global for console usage: MathUtils.add(1,2), etc.
+      window.MathUtils = {
+        add,
+        subtract,
+        multiply,
+        divide,
+        power,
+        factorial,
+        gcd,
+        lcm,
+        sum,
+        average,
+        isPrime,
+      };
+    </script>
+  </body>
+</html>
