@@ -10,4 +10,5 @@ const kurang = function (a, b) {
 };
 
 document.writeln(kurang(20 - 15));
-document.writeln(kurang(15 - 11));
+document.writeln(kurang(10 - 2));
+document.writeln(kurang(10 - 5));
